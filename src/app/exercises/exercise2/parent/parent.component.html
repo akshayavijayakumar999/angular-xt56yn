@@ -1,0 +1,9 @@
+<div>
+   <h4>Parent Component</h4>
+    <label>Input field from the Parent component</label>
+    <br />
+    <input type="text" id="parentInput" #userName />
+    <button type="submit" id="parentButton" (click)="buttonClick(userName.value)">
+       Click
+    </button>
+ </div>

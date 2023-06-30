@@ -1,0 +1,11 @@
+<div>
+    <h3><b>Parent-Child</b></h3>
+    <app-parent (parentEvent)="addName($event)"></app-parent>
+    <h4>Child Component</h4>
+    <p>Displaying names entered in parent component input field</p>
+    <label>Names:</label>
+    <br />
+    <p *ngFor="let name of names">
+    <span>{{ name }}</span>
+    </p>
+ </div>

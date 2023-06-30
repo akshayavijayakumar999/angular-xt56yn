@@ -20,3 +20,73 @@
 <!--Do Not touch the code above this line!-->
 <hr/>
 <span>YOUR CODE HERE!</span>
+
+<!-- exercise1.component.html -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+
+
+
+<form (ngSubmit)="submitForm()" [formGroup]="registrationForm" novalidate>
+
+  <div>
+
+    <label for="name">Name : </label>
+
+    <input type="text" id="name" formControlName="name">
+
+    <div *ngIf="registrationForm.get('name')?.invalid && (registrationForm.get('name')?.dirty || registrationForm.get('name')?.touched)">
+
+      <div *ngIf="registrationForm.get('name')?.errors?.required">Name is required.</div>
+
+    </div>
+
+  </div>
+
+  <div>
+
+    <label for="email">Email : </label>
+
+    <input type="email" id="email" formControlName="email">
+
+    <div *ngIf="registrationForm.get('email')?.invalid && (registrationForm.get('email')?.dirty || registrationForm.get('email')?.touched)">
+
+      <div *ngIf="registrationForm.get('email')?.errors?.required">Email is required.</div>
+
+      <div *ngIf="registrationForm.get('email')?.errors?.pattern">Invalid email format.</div>
+
+    </div>
+
+  </div>
+
+  <div>
+
+    <label for="password">Password : </label>
+
+    <input type="password" id="password" formControlName="password">
+
+    <div *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.dirty || registrationForm.get('password')?.touched)">
+
+      <div *ngIf="registrationForm.get('password')?.errors?.required">Password is required.</div>
+
+      <div *ngIf="registrationForm.get('password')?.errors?.minlength">Password should be at least 4 characters long.</div>
+
+      <div *ngIf="registrationForm.get('password')?.errors?.maxlength">Password should not exceed 10 characters.</div>
+
+      <div *ngIf="registrationForm.get('password')?.errors?.specialChars">Password should contain at least 1 special character.</div>
+
+      <div *ngIf="registrationForm.get('password')?.errors?.consecutiveChars">Password should not have consecutive characters.</div>
+
+    </div>
+
+  </div>
+
+  <button class="btn btn-primary" type="submit" [disabled]="registrationForm.invalid">Register</button>
+
+</form>
+
+    </div>
+  </div>
+</div>
