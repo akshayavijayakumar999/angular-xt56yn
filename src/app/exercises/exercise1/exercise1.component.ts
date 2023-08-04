@@ -2,95 +2,88 @@
 
 import { Component, OnInit } from '@angular/core';
 
-import { FormBuilder, FormGroup, Validators, AbstractControl, ValidatorFn, ValidationErrors } from '@angular/forms';
-
-
-
+import {
+  FormBuilder,
+  FormGroup,
+  Validators,
+  AbstractControl,
+  ValidatorFn,
+  ValidationErrors,
+  FormControl,
+} from '@angular/forms';
 
 @Component({
-
   selector: 'app-exercise1',
 
   templateUrl: './exercise1.component.html',
 
-  styleUrls: ['./exercise1.component.css']
-
+  styleUrls: ['./exercise1.component.css'],
 })
-
 export class Exercise1Component implements OnInit {
+  regForm: FormGroup;
+  constructor(private formBuilder: FormBuilder) {
+    this.regForm = this.formBuilder.group({
+      name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
 
-  registrationForm!: FormGroup;
-
-
-
-
-  constructor(private formBuilder: FormBuilder) { }
-
-
-
+      password: ['', [Validators.required, passwordValidator()]],
+    });
+  }
 
   ngOnInit(): void {
-
-    this.registrationForm = this.formBuilder.group({
-
+    this.regForm = this.formBuilder.group({
       name: ['', Validators.required],
+      email: ['', [Validators.required, Validators.email]],
 
-      email: ['', [Validators.required, Validators.pattern(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)]],
-
-      password: ['', [Validators.required, Validators.minLength(4), Validators.maxLength(10), this.passwordComplexityValidator()]]
-
+      password: ['', [Validators.required, passwordValidator()]],
     });
-
   }
 
-
-
-
-  passwordComplexityValidator(): ValidatorFn {
-
-    return (control: AbstractControl): ValidationErrors | null => {
-
-      const value = control.value;
-
-      if (value && value.length >= 4 && value.length <= 10) {
-
-        if (!/\W/.test(value)) {
-
-          return { specialChars: true };
-
-        }
-
-        if (/(.)\1/.test(value)) {
-
-          return { consecutiveChars: true };
-
-        }
-
-      }
-
-      return null;
-
-    };
-
+  get name(): FormControl {
+    return this.regForm.get('name') as FormControl;
   }
 
+  get email(): FormControl {
+    return this.regForm.get('email') as FormControl;
+  }
 
+  get password(): FormControl {
+    return this.regForm.get('password') as FormControl;
+  }
 
-
-  submitForm(): void {
-
-    if (this.registrationForm.valid) {
-
-      // Perform registration logic
-
-      console.log('Registration successful!');
-
+  userRegistration() {
+    if (this.regForm.valid) {
+      console.log('Successfull Registration!');
     }
-
   }
-
 }
 
+export function passwordValidator(): ValidatorFn {
+  return (control: AbstractControl): ValidationErrors | null => {
+    const password = control.value;
 
+    for (let i = 0; i < password.length - 1; i++) {
+      if (password[i] === password[i + 1]) {
+        return { consecutiveChars: true };
+      }
 
+      // Check for minimum length
+      if (password.length < 4) {
+        return { minLength: true };
+      }
 
+      // Check for maximum length
+      if (password.length > 10) {
+        return { maxLength: true };
+      }
+
+      // Check for at least one special character using regex
+      if (!/[!@#$%^&*]/.test(password)) {
+        return { specialChar: true };
+      }
+
+      // Check for consecutive characters
+    }
+    return null; // Return null if the password is valid
+  };
+}

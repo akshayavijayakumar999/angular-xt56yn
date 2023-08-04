@@ -1,18 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  ChangeDetectionStrategy,
+  ChangeDetectorRef,
+  Component,
+  OnInit,
+} from '@angular/core';
 
 @Component({
   selector: 'app-inverted-parent',
   templateUrl: './inverted-parent.component.html',
-  styleUrls: ['./inverted-parent.component.css']
+  styleUrls: ['./inverted-parent.component.css'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class InvertedParentComponent implements OnInit {
+  ngOnInit(): void {}
 
-  constructor() { }
+  InvertedparentValue: string = '';
+  constructor(private changeDetectorRef: ChangeDetectorRef) {}
 
-  ngOnInit(): void {
-  }
-  names = [];
-  addName(value: string) {
-     this.names.push(value);
+  InvertedchildToParentValuePass(value: string): void {
+    this.InvertedparentValue = value;
+    this.changeDetectorRef.detectChanges();
   }
 }

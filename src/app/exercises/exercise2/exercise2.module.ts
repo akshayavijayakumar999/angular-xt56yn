@@ -10,25 +10,24 @@ import { ParentComponent } from './parent/parent.component';
 import { ChildComponent } from './child/child.component';
 import { RouterModule } from '@angular/router';
 
-
-
 @NgModule({
   declarations: [
     Exercise2Component,
-    
+
     InvertedParentComponent,
     InvertedChildComponent,
     ParentComponent,
     ChildComponent,
-   
   ],
   imports: [
     FormsModule,
     CommonModule,
-    RouterModule.forChild([{
-      path: '',
-      component: Exercise2Component
-    }])
-  ]
+    RouterModule.forChild([
+      {
+        path: '',
+        component: Exercise2Component,
+      },
+    ]),
+  ],
 })
-export class Exercise2Module { }
+export class Exercise2Module {}

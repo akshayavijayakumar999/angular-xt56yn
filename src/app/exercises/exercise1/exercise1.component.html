@@ -22,96 +22,159 @@
 <span>YOUR CODE HERE!</span>
 
 <!-- exercise1.component.html -->
+<!-- commented -->
+<!-- <div class="container">
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+
+
+
+<form (ngSubmit)="submitForm()" [formGroup]="registrationForm" novalidate>
+
+  <div>
+
+    <label for="name">Name : </label>
+
+    <input type="text" id="name" formControlName="name">
+
+    <div *ngIf="registrationForm.get('name')?.invalid && (registrationForm.get('name')?.dirty || registrationForm.get('name')?.touched)">
+
+      <div *ngIf="registrationForm.get('name')?.errors?.required">Name is required.</div>
+
+    </div>
+
+  </div>
+
+  <div>
+
+    <label for="email">Email : </label>
+
+    <input type="email" id="email" formControlName="email">
+
+    <div *ngIf="registrationForm.get('email')?.invalid && (registrationForm.get('email')?.dirty || registrationForm.get('email')?.touched)">
+
+      <div *ngIf="registrationForm.get('email')?.errors?.required">Email is required.</div>
+
+      <div *ngIf="registrationForm.get('email')?.errors?.pattern">Invalid email format.</div>
+
+    </div>
+
+  </div>
+
+  <div>
+
+    <label for="password">Password : </label>
+
+    <input type="password" id="password" formControlName="password">
+
+    <div *ngIf="registrationForm.get('password')?.invalid && (registrationForm.get('password')?.dirty || registrationForm.get('password')?.touched)">
+
+      <div *ngIf="registrationForm.get('password')?.errors?.required">Password is required.</div>
+
+      <div *ngIf="registrationForm.get('password')?.errors?.minlength">Password should be at least 4 characters long.</div>
+
+      <div *ngIf="registrationForm.get('password')?.errors?.maxlength">Password should not exceed 10 characters.</div>
+
+      <div *ngIf="registrationForm.get('password')?.errors?.specialChars">Password should contain at least 1 special character.</div>
+
+      <div *ngIf="registrationForm.get('password')?.errors?.consecutiveChars">Password should not have consecutive characters.</div>
+
+    </div>
+
+  </div>
+
+  <button class="btn btn-primary" type="submit" [disabled]="registrationForm.invalid">Register</button>
+
+</form>
+
+    </div>
+  </div>
+</div> -->
+
+<!-- commented -->
+
+------
 
 <div class="container">
   <div class="row">
     <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
-      <form (ngSubmit)="submitForm()" [formGroup]="registrationForm" novalidate>
-        <div>
-          <label for="name">Name : </label>
-
-          <input type="text" id="name" formControlName="name" />
-
-          <div
-            *ngIf="
-              registrationForm.get('name')?.invalid &&
-              (registrationForm.get('name')?.dirty ||
-                registrationForm.get('name')?.touched)
-            "
-          >
-            <div *ngIf="registrationForm.get('name')?.errors?.required">
-              Name is required.
+      <div class="container mt-5">
+        <form (ngSubmit)="userRegistration()" [formGroup]="regForm">
+          <div class="form-group mb-9">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="name"
+              class="form-control"
+              formControlName="name"
+              required
+            />
+            <div *ngIf="name.invalid && (name.dirty || name.touched)">
+              <div *ngIf="name.errors?.['required']">Name is required.</div>
             </div>
           </div>
-        </div>
 
-        <div>
-          <label for="email">Email : </label>
-
-          <input type="email" id="email" formControlName="email" />
-
-          <div
-            *ngIf="
-              registrationForm.get('email')?.invalid &&
-              (registrationForm.get('email')?.dirty ||
-                registrationForm.get('email')?.touched)
-            "
-          >
-            <div *ngIf="registrationForm.get('email')?.errors?.required">
-              Email is required.
-            </div>
-
-            <div *ngIf="registrationForm.get('email')?.errors?.pattern">
-              Invalid email format.
+          <div class="form-group mb-9">
+            <label for="email">Email</label>
+            <input
+              type="text"
+              id="email"
+              class="form-control"
+              formControlName="email"
+              required
+            />
+            <div *ngIf="email.invalid && (email.dirty || email.touched)">
+              <!-- <div *ngIf="regForm.controls.email.invalid && (regForm.controls.email.dirty || regForm.controls.email.touched)">
+          <div *ngIf="regForm.controls.email.errors?.required">Email is required.</div>
+          <div *ngIf="regForm.controls.email.errors?.email">Please enter a valid email address.</div>
+         -->
+              <div *ngIf="email.errors?.['required']">Email is required.</div>
+              <div *ngIf="email.errors?.['email']">
+                Please enter a valid email address.
+              </div>
             </div>
           </div>
-        </div>
 
-        <div>
-          <div></div>
-          <label for="password">Password : </label>
-
-          <input type="password" id="password" formControlName="password" />
-
-          <div
-            *ngIf="
-              registrationForm.get('password')?.invalid &&
-              (registrationForm.get('password')?.dirty ||
-                registrationForm.get('password')?.touched)
-            "
-          >
-            <div *ngIf="registrationForm.get('password')?.errors?.required">
-              Password is required.
-            </div>
-
-            <div *ngIf="registrationForm.get('password')?.errors?.minlength">
-              Password should be at least 4 characters long.
-            </div>
-
-            <div *ngIf="registrationForm.get('password')?.errors?.maxlength">
-              Password should not exceed 10 characters.
-            </div>
-
-            <div *ngIf="registrationForm.get('password')?.errors?.specialChars">
-              Password should contain at least 1 special character.
-            </div>
+          <div class="form-group mb-9">
+            <label for="password">Password</label>
+            <input
+              type="password"
+              id="password"
+              class="form-control"
+              formControlName="password"
+              required
+            />
 
             <div
-              *ngIf="registrationForm.get('password')?.errors?.consecutiveChars"
+              *ngIf="password.invalid && (password.dirty || password.touched)"
             >
-              Password should not have consecutive characters.
+              <div *ngIf="password.errors?.['required']">
+                Password is required.
+              </div>
+              <div *ngIf="password.errors?.['minLength']">
+                Password must be at least 4 characters long.
+              </div>
+              <div *ngIf="password.errors?.['maxLength']">
+                Password can't exceed 10 characters.
+              </div>
+              <div *ngIf="password.errors?.['specialChar']">
+                Password must contain at least 1 special character.
+              </div>
+              <div *ngIf="password.errors?.['consecutiveChars']">
+                Password can't have consecutive identical characters.
+              </div>
             </div>
           </div>
-        </div>
-
-        <button
-          class="btn btn-primary"
-          type="submit"
-          [disabled]="registrationForm.invalid"
-        >
-          Register
-        </button>
-      </form>
+          <br /><br />
+          <button
+            class="btn btn-primary"
+            type="submit"
+            [disabled]="regForm.invalid"
+          >
+            Register
+          </button>
+        </form>
+      </div>
     </div>
   </div>
 </div>

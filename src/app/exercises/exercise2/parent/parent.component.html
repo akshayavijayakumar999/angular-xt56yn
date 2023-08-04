@@ -1,9 +1,16 @@
+<h4><b>Parent Component</b></h4>
 <div>
-   <h4>Parent Component</h4>
-    <label>Input field from the Parent component</label>
-    <br />
-    <input type="text" id="parentInput" #userName />
-    <button type="submit" id="parentButton" (click)="buttonClick(userName.value)">
-       Click
-    </button>
- </div>
+  <!-- <input type="text" placeholder="Enter the child value" #parentVal> -->
+
+  <input
+    type="text"
+    placeholder="Enter the child value"
+    [(ngModel)]="parentVal"
+  />
+
+  <br /><br />
+  <!-- <button class="btn btn-primary" (click)="parentToChildData(parentVal.value)"> Pass</button> -->
+  <button class="btn btn-primary" (click)="parentToChildData()">Pass</button>
+</div>
+
+<app-child [childVal]="parentToChildVal"></app-child>

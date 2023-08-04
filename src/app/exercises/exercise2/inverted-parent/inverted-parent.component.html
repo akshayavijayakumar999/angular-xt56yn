@@ -1,11 +1,7 @@
-<div>
-    
-    <app-inverted-child (childEvent)="addName($event)"></app-inverted-child>
-    <h4> Inverted Parent Component</h4>
-    <p>Displaying names entered in child component input field</p>
-    <label>Names:</label>
-    <br />
-    <p *ngFor="let name of names">
-    <span>{{ name }}</span>
-    </p>
- </div>
+<app-inverted-child
+  (InvertedchildToParentEvent)="InvertedchildToParentValuePass($event)"
+></app-inverted-child>
+<h4><b>Inverted Parent Component</b></h4>
+<div *ngIf="InvertedparentValue">
+  Inverted Child Value: {{ InvertedparentValue }}
+</div>

@@ -1,82 +1,76 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { ExercisesModule } from './exercises/exercises.module';
 
 const routes: Routes = [
+  {
+    path: '',
+    redirectTo: 'exercise/1',
+    pathMatch: 'full',
+  },
 
   {
-
     path: 'exercise/1',
 
     loadChildren: () =>
-
       import('./exercises/exercise1/exercise1.module').then(
-
         (module) => module.Exercise1Module
-
       ),
-
   },
 
   {
-
     path: 'exercise/2',
 
     loadChildren: () =>
-
       import('./exercises/exercise2/exercise2.module').then(
-
         (module) => module.Exercise2Module
-
       ),
-
   },
 
   {
-
     path: 'exercise/3',
 
     loadChildren: () =>
-
       import('./exercises/exercise3/exercise3.module').then(
-
         (module) => module.Exercise3Module
-
       ),
-
   },
 
   {
-
     path: 'exercise/4',
 
     loadChildren: () =>
-
       import('./exercises/exercise4/exercise4.module').then(
-
         (module) => module.Exercise4Module
-
       ),
-
   },
+
+  // {
+
+  //   path: 'exercise/*',
+
+  //   loadChildren: () =>
+
+  //     import('./exercises/exerciseNotFound/exerciseNotFound.module').then(
+
+  //       (module) => module.ExerciseNotFoundModule
+
+  //     ),
+
+  // },
 
   {
-
-    path: 'exercise/*',
+    path: '**',
 
     loadChildren: () =>
-
       import('./exercises/exerciseNotFound/exerciseNotFound.module').then(
-
         (module) => module.ExerciseNotFoundModule
-
       ),
-
   },
-
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
