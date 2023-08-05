@@ -10,16 +10,7 @@ import { ExercisesModule } from './exercises/exercises.module';
 
 @NgModule({
   declarations: [AppComponent],
-  imports: [
-    ReactiveFormsModule,
-    BrowserModule,
-    AppRoutingModule,
-
-    // RouterModule.forRoot([{
-    //   path: 'exercises',
-    //   loadChildren: () =>   import('./exercises/exercises.module').then((m) => m.ExercisesModule),
-    // }]),
-  ],
+  imports: [ReactiveFormsModule, BrowserModule, AppRoutingModule],
   providers: [],
   bootstrap: [AppComponent],
 })
