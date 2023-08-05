@@ -24,10 +24,6 @@ export class ParentComponent implements OnInit {
     this.parentVal = '';
   }
 
-  // parentToChildData(value: string) {
-  //   this.parentToChildVal = value;
-  //    }
-
   parentToChildData() {
     this.parentToChildVal = this.parentVal;
     // this.changeDetectorRef.detectChanges();
