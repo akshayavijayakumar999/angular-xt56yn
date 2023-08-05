@@ -61,7 +61,7 @@ export class Exercise1Component implements OnInit {
 export function passwordValidator(): ValidatorFn {
   return (control: AbstractControl): ValidationErrors | null => {
     const password = control.value;
-
+    // Check for consecutive characters
     for (let i = 0; i < password.length - 1; i++) {
       if (password[i] === password[i + 1]) {
         return { consecutiveChars: true };
@@ -81,8 +81,6 @@ export function passwordValidator(): ValidatorFn {
       if (!/[!@#$%^&*]/.test(password)) {
         return { specialChar: true };
       }
-
-      // Check for consecutive characters
     }
     return null; // Return null if the password is valid
   };
