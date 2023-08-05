@@ -45,6 +45,15 @@ const routes: Routes = [
       ),
   },
 
+  {
+    path: '**',
+
+    loadChildren: () =>
+      import('./exercises/exerciseNotFound/exerciseNotFound.module').then(
+        (module) => module.ExerciseNotFoundModule
+      ),
+  },
+
   // {
 
   //   path: 'exercise/*',
@@ -58,15 +67,6 @@ const routes: Routes = [
   //     ),
 
   // },
-
-  {
-    path: '**',
-
-    loadChildren: () =>
-      import('./exercises/exerciseNotFound/exerciseNotFound.module').then(
-        (module) => module.ExerciseNotFoundModule
-      ),
-  },
 ];
 
 @NgModule({
