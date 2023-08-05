@@ -24,9 +24,6 @@ export class ChildComponent implements OnInit {
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    // called when input properties are changed
-    // i.e properties decorated with @ input decorator
-
     if (changes['childVal']) {
       this.changeDetectorRef.markForCheck();
     }
